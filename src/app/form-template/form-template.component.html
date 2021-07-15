@@ -1,0 +1,94 @@
+<div>
+  <h2>Template-Driven Form</h2>
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <div [hidden]="userForm.submitted">
+      <div class="cross-validation" [class.cross-validation-error]="userForm.errors?.identityRevealed && (userForm.touched || userForm.dirty)">
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input type="text" id="firstname" name="firstname" class="form-control"
+                required minlength="2" maxlength="50"
+                [(ngModel)]="user.firstname" #firstname="ngModel">
+          <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+              class="alert">
+            <div *ngIf="firstname.errors?.required">
+              First Name is required.
+            </div>
+            <div *ngIf="firstname.errors?.minlength">
+              First Name must be at least 2 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="middlename">Middle Name</label>
+          <input type="text" id="middlename" name="middlename" class="form-control"
+                maxlength="50"
+                [(ngModel)]="user.middlename" #middlename="ngModel">          
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" name="lastname" class="form-control"
+                required minlength="2" maxlength="50"
+                [(ngModel)]="user.lastname" #lastname="ngModel">
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+              class="alert">
+            <div *ngIf="lastname.errors?.required">
+              Last Name is required.
+            </div>
+            <div *ngIf="lastname.errors?.minlength">
+              Last Name must be at least 2 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emailid">Email Id</label>
+          <input type="email" id="emailid" name="emailid" class="form-control"
+                required minlength="6" maxlength="50" [pattern]="emailPattern"
+                [(ngModel)]="user.email" #email="ngModel" email>          
+          <div *ngIf="(email.invalid && (email.dirty || email.touched))|| (email.errors && userForm.submitted && !isValidFormSubmitted)"
+              class="alert">
+            <div *ngIf="email.errors?.required">
+              Email Id is required.
+            </div>            
+            <div *ngIf="email.errors?.pattern"> 
+              Email Id not valid.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender"
+                name="gender"
+                required [(ngModel)]="user.gender"
+                #gender="ngModel">
+          <option *ngFor="let g of genders" [value]="g">{{g}}</option>
+        </select>
+        <div *ngIf="gender.errors && gender.touched" class="alert">
+          <div *ngIf="gender.errors.required">Gender is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <select id="age"
+                name="age"
+                required [(ngModel)]="user.age"
+                #age="ngModel">
+          <option *ngFor="let in of counter(100) ;let i = index" [value]="i">{{i}}</option>
+        </select>
+        <div *ngIf="age.errors && age.touched" class="alert">
+          <div *ngIf="age.errors.required">Age is required.</div>
+        </div>
+      </div>      
+      <p>Complete the form to enable the Submit button.</p>
+      <button type="submit"
+              [disabled]="userForm.invalid">Submit</button>
+      <button type="button"
+              (click)="userForm.resetForm({})">Reset</button>
+    </div>
+
+    <div class="submitted-message" *ngIf="userForm.submitted">
+      <p>You've submitted your user, {{ userForm.value.name }}!</p>
+      <button (click)="userForm.resetForm({})">Add new user</button>
+    </div>
+  </form>
+</div>
