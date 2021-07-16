@@ -78,14 +78,63 @@
         <div *ngIf="age.errors && age.touched" class="alert">
           <div *ngIf="age.errors.required">Age is required.</div>
         </div>
-      </div>      
+      </div>    
+      <div class="form-group">
+        <label for="birthdate">Date of Birth</label>
+        <mat-form-field appearance="fill">          
+          <input class="form-control" matInput [matDatepicker]="picker" [(ngModel)]="user.birthdate" placeholder="{{user.birthdate}}" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>                
+      </div>  
+      <div class="form-group">
+        <label for="address">Address</label>
+        <mat-form-field class="form-control" appearance="fill">          
+          <textarea class="form-control" matInput [(ngModel)]="user.address" #address="ngModel" [pattern]="addressPattern" maxlength="500"></textarea>
+        </mat-form-field>   
+        <div *ngIf="(address.invalid && (address.dirty || address.touched))|| (address.errors && userForm.submitted && !isValidFormSubmitted)"
+              class="alert">                     
+            <div *ngIf="address.errors?.pattern"> 
+              Address is not valid.
+            </div>
+          </div>            
+      </div>  
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" class="form-control"
+              maxlength="100"
+              [(ngModel)]="user.state" #state="ngModel" [pattern]="statePattern">
+        <div *ngIf="state.invalid && (state.dirty || state.touched)"
+            class="alert">            
+            <div *ngIf="state.errors?.pattern"> 
+            State is not valid.
+          </div>          
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country" class="form-control"
+              required minlength="2" maxlength="100"
+              [(ngModel)]="user.country" #country="ngModel">
+        <div *ngIf="country.invalid && (country.dirty || country.touched)"
+            class="alert">
+          <div *ngIf="country.errors?.required">
+            Country is required.
+          </div>
+          <div *ngIf="country.errors?.minlength">
+            Country must be at least 2 characters long.
+          </div>
+          <div *ngIf="country.errors?.pattern"> 
+            Country is not valid.
+          </div> 
+        </div>
+      </div>
       <p>Complete the form to enable the Submit button.</p>
       <button type="submit"
               [disabled]="userForm.invalid">Submit</button>
       <button type="button"
               (click)="userForm.resetForm({})">Reset</button>
     </div>
-
     <div class="submitted-message" *ngIf="userForm.submitted">
       <p>You've submitted your user, {{ userForm.value.name }}!</p>
       <button (click)="userForm.resetForm({})">Add new user</button>

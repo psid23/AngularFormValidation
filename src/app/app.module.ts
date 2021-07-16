@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { FormTemplateComponent as FormTemplateComponent } from './form-template/form-template.component';
-import { MaterialModule} from '../app/material-module';
-import { MatNativeDateModule} from '@angular/material/core';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { MatSliderModule } from '@angular/material/slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule,    
+    MatSliderModule,
+    MatDatepickerModule,
     MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     AppComponent,
