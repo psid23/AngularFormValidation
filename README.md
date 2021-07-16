@@ -11,6 +11,6 @@ npm install
 Run the below command to open in browser at default SSL URL https://localhost:4200
 ng serve --ssl --open
 
-Current code includes implementation of Req# 1.1 to 1.6
+Current code includes implementation of Req# 1.1 to 1.10
 
-Req# 1.7 to 1.10 is Work In Progress(WIP :-) )
+Styling, testing and bug fixes pending
