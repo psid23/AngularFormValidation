@@ -56,10 +56,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="gender">Gender</label>
+        <label for="gender">Gender</label><div></div>
         <select id="gender"
                 name="gender"
-                required [(ngModel)]="user.gender"
+                required [(ngModel)]="user.gender" class="selectbox"
                 #gender="ngModel">
           <option *ngFor="let g of genders" [value]="g">{{g}}</option>
         </select>
@@ -68,11 +68,11 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="age">Age</label>
+        <label for="age">Age</label><div></div>
         <select id="age"
                 name="age"
                 required [(ngModel)]="user.age"
-                #age="ngModel">
+                #age="ngModel" class="selectbox">
           <option *ngFor="let in of counter(100) ;let i = index" [value]="i">{{i}}</option>
         </select>
         <div *ngIf="age.errors && age.touched" class="alert">
@@ -80,7 +80,7 @@
         </div>
       </div>    
       <div class="form-group">
-        <label for="birthdate">Date of Birth</label>
+        <label for="birthdate">Date of Birth</label><div></div>
         <mat-form-field appearance="fill">          
           <input id="birthdate" name="birthdate" class="form-control" matInput [matDatepicker]="picker" [(ngModel)]="user.birthdate" #birthdate="ngModel" placeholder="{{user.birthdate}}" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -101,7 +101,7 @@
       </div>  
       <div class="form-group">
         <label for="state">State</label>
-        <input type="text" id="state" name="state" class="form-control"
+        <input type="text" id="state" name="state" class="selectbox"
               minlength="2" maxlength="100"
               [(ngModel)]="user.state" #state="ngModel" [pattern]="statePattern">
         <div *ngIf="state.invalid && (state.dirty || state.touched)"
@@ -130,11 +130,11 @@
         </div>
       </div>
       <p>Complete the form to enable the Submit button.</p>
-      <button type="submit"
-              [disabled]="userForm.invalid">Submit</button>
-      <button type="button"
+      <button type="submit" class="btn btn-primary"
+              [disabled]="userForm.invalid">Submit</button>&nbsp;
+      <button type="button" class="btn btn-primary"
               (click)="userForm.resetForm({})">Reset</button>
-    </div>
+    </div>    
     <div class="submitted-message" *ngIf="userForm.submitted">
       <p>You've submitted your user, {{ userForm.value.name }}!</p>
       <button (click)="userForm.resetForm({})">Add new user</button>
