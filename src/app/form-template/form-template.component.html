@@ -82,7 +82,7 @@
       <div class="form-group">
         <label for="birthdate">Date of Birth</label>
         <mat-form-field appearance="fill">          
-          <input class="form-control" matInput [matDatepicker]="picker" [(ngModel)]="user.birthdate" placeholder="{{user.birthdate}}" required>
+          <input id="birthdate" name="birthdate" class="form-control" matInput [matDatepicker]="picker" [(ngModel)]="user.birthdate" #birthdate="ngModel" placeholder="{{user.birthdate}}" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>                
@@ -90,7 +90,7 @@
       <div class="form-group">
         <label for="address">Address</label>
         <mat-form-field class="form-control" appearance="fill">          
-          <textarea class="form-control" matInput [(ngModel)]="user.address" #address="ngModel" [pattern]="addressPattern" maxlength="500"></textarea>
+          <textarea id="address" name="address" class="form-control" matInput [(ngModel)]="user.address" #address="ngModel" [pattern]="addressPattern" maxlength="500"></textarea>
         </mat-form-field>   
         <div *ngIf="(address.invalid && (address.dirty || address.touched))|| (address.errors && userForm.submitted && !isValidFormSubmitted)"
               class="alert">                     
@@ -102,7 +102,7 @@
       <div class="form-group">
         <label for="state">State</label>
         <input type="text" id="state" name="state" class="form-control"
-              maxlength="100"
+              minlength="2" maxlength="100"
               [(ngModel)]="user.state" #state="ngModel" [pattern]="statePattern">
         <div *ngIf="state.invalid && (state.dirty || state.touched)"
             class="alert">            
@@ -115,7 +115,7 @@
         <label for="country">Country</label>
         <input type="text" id="country" name="country" class="form-control"
               required minlength="2" maxlength="100"
-              [(ngModel)]="user.country" #country="ngModel">
+              [(ngModel)]="user.country" #country="ngModel"[pattern]="countryPattern">
         <div *ngIf="country.invalid && (country.dirty || country.touched)"
             class="alert">
           <div *ngIf="country.errors?.required">
