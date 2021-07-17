@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="firstname">First Name</label>
           <input type="text" id="firstname" name="firstname" class="form-control"
-                required minlength="2" maxlength="50"
+                required minlength="2" maxlength="50" placeholder="Enter First Name"
                 [(ngModel)]="user.firstname" #firstname="ngModel">
           <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
               class="alert">
@@ -21,13 +21,13 @@
         <div class="form-group">
           <label for="middlename">Middle Name</label>
           <input type="text" id="middlename" name="middlename" class="form-control"
-                maxlength="50"
+                maxlength="50" placeholder="Enter Middle Name"
                 [(ngModel)]="user.middlename" #middlename="ngModel">          
         </div>
         <div class="form-group">
           <label for="lastname">Last Name</label>
           <input type="text" id="lastname" name="lastname" class="form-control"
-                required minlength="2" maxlength="50"
+                required minlength="2" maxlength="50"  placeholder="Enter Last Name"
                 [(ngModel)]="user.lastname" #lastname="ngModel">
           <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
               class="alert">
@@ -42,7 +42,7 @@
         <div class="form-group">
           <label for="emailid">Email Id</label>
           <input type="email" id="emailid" name="emailid" class="form-control"
-                required minlength="6" maxlength="50" [pattern]="emailPattern"
+                required minlength="6" maxlength="50" [pattern]="emailPattern" placeholder="Enter Email Id"
                 [(ngModel)]="user.email" #email="ngModel" email>          
           <div *ngIf="(email.invalid && (email.dirty || email.touched))|| (email.errors && userForm.submitted && !isValidFormSubmitted)"
               class="alert">
@@ -90,7 +90,7 @@
       <div class="form-group">
         <label for="address">Address</label>
         <mat-form-field class="form-control" appearance="fill">          
-          <textarea id="address" name="address" class="form-control" matInput [(ngModel)]="user.address" #address="ngModel" [pattern]="addressPattern" maxlength="500"></textarea>
+          <textarea placeholder="Enter Address" id="address" name="address" class="form-control" matInput [(ngModel)]="user.address" #address="ngModel" [pattern]="addressPattern" maxlength="500"></textarea>
         </mat-form-field>   
         <div *ngIf="(address.invalid && (address.dirty || address.touched))|| (address.errors && userForm.submitted && !isValidFormSubmitted)"
               class="alert">                     
@@ -101,7 +101,7 @@
       </div>  
       <div class="form-group">
         <label for="state">State</label>
-        <input type="text" id="state" name="state" class="selectbox"
+        <input placeholder="Enter State"type="text" id="state" name="state" class="selectbox"
               minlength="2" maxlength="100"
               [(ngModel)]="user.state" #state="ngModel" [pattern]="statePattern">
         <div *ngIf="state.invalid && (state.dirty || state.touched)"
@@ -113,7 +113,7 @@
       </div>
       <div class="form-group">
         <label for="country">Country</label>
-        <input type="text" id="country" name="country" class="form-control"
+        <input placeholder="Enter Country" type="text" id="country" name="country" class="form-control"
               required minlength="2" maxlength="100"
               [(ngModel)]="user.country" #country="ngModel"[pattern]="countryPattern">
         <div *ngIf="country.invalid && (country.dirty || country.touched)"
